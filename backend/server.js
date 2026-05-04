@@ -16,11 +16,9 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/projects", require("./routes/projectRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
 
-// frontend serve
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-// fallback route (IMPORTANT FIX)
-app.use((req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
