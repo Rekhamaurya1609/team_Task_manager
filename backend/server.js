@@ -17,9 +17,11 @@ app.use("/api/projects", require("./routes/projectRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
 
 // 🔥 FRONTEND SERVE (VERY IMPORTANT)
+// frontend serve
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-app.get("*", (req, res) => {
+// fallback route (IMPORTANT FIX)
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
